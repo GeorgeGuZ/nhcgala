@@ -1,2 +1,2 @@
-# nhcgala
+# nhc gala
 nhc gala app
