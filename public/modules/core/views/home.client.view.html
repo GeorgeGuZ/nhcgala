@@ -1,4 +1,29 @@
 <section data-ng-controller="HomeController">
+	<div class="row">
+
+
+		<div class="col-sm-6" ng-repeat="menu in menus">
+			<div class="row">
+				<div class="col-xs-2">
+					<h1 class="pull-right">
+						<button type="button" class="btn" ng-class="menu.color">
+							<i class="glyphicon" ng-class="menu.icon"></i>
+						</button>
+					</h1>
+				</div>
+				<div class="col-xs-10">
+					<h1>{{menu.title}}</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-2">
+					<span class="text-muted">{{menu.description}}</span>
+				</div>
+			</div>
+		</div>
+		
+			
+	</div>
 	<div class="jumbotron text-center">
 		<form id="checkout" method="post" action="/checkout">
 		  <div id="payment-form"></div>

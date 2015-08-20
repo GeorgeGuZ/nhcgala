@@ -6,8 +6,8 @@ module.exports = {
 		title: 'NHCGala - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '1481419075507929',
+		clientSecret: process.env.FACEBOOK_SECRET || '9c50f1d999e578c218f61a4f45b752cb',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
