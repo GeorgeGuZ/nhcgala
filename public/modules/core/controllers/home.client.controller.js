@@ -10,7 +10,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				icon: "glyphicon glyphicon-user",
 				color: "btn btn-success",
 				title: "Register",
-				description: "Get a valid Id for event activities"
+				description: "Get a valid ID for event activities"
 			},
 			{
 				icon: "glyphicon glyphicon-calendar",
