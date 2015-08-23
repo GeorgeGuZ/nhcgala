@@ -12,10 +12,15 @@
 	</div>
 	<small>
 		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="ticket.created | date:'mediumDate'"></span>
+			Purchased 
 			by
 			<span data-ng-bind="ticket.user.displayName"></span>
+			on
+			<span data-ng-bind="ticket.created | date:'mediumDate'"></span>
+			
+			<br />
+			<span data-ng-bind="ticket.barcode"></span>
+			<div barcode-generator="{{ticket.barcode}}" style="height:100px;">
 		</em>
 	</small>
 </section>

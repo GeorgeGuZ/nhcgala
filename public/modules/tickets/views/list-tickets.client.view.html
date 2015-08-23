@@ -5,10 +5,11 @@
     <div class="list-group">
         <a data-ng-repeat="ticket in tickets" data-ng-href="#!/tickets/{{ticket._id}}" class="list-group-item">
 			<small class="list-group-item-text">
-				Posted on
+				Purchased by
+                <span data-ng-bind="ticket.user.displayName"></span>
+				on
 				<span data-ng-bind="ticket.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="ticket.user.displayName"></span>
+
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="ticket.name"></h4>
         </a>

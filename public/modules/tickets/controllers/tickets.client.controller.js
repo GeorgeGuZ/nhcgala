@@ -1,10 +1,10 @@
 'use strict';
 
 // Tickets controller
-angular.module('tickets').controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
+var app =angular.module('tickets');
+app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
-
 		// Create new Ticket
 		$scope.create = function() {
 			// Create new Ticket object
@@ -13,7 +13,7 @@ angular.module('tickets').controller('TicketsController', ['$scope', '$statePara
 				lastName: this.lastName,
 				payed: true,
 				price: 10.00,
-				barcode: Math.floor(Math.random() * (1000000 - 100000)) + 100000
+				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
 
@@ -22,7 +22,8 @@ angular.module('tickets').controller('TicketsController', ['$scope', '$statePara
 				$location.path('tickets/' + response._id);
 
 				// Clear form fields
-				
+				$scope.firstName = '',
+				$scope.lastName = '',
 				$scope.price = '';
 				$scope.barcode = '';
 			}, function(errorResponse) {
@@ -46,7 +47,7 @@ angular.module('tickets').controller('TicketsController', ['$scope', '$statePara
 				});
 			}
 		};
-
+		$scope.showBarcode = function() {};
 		// Update existing Ticket
 		$scope.update = function() {
 			var ticket = $scope.ticket;
