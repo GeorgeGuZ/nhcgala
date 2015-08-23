@@ -47,7 +47,6 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 				});
 			}
 		};
-		$scope.showBarcode = function() {};
 		// Update existing Ticket
 		$scope.update = function() {
 			var ticket = $scope.ticket;

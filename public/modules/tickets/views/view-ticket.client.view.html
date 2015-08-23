@@ -2,25 +2,32 @@
 	<div class="page-header">
 		<h1 data-ng-bind="ticket.name"></h1>
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == ticket.user._id))">
-		<a class="btn btn-primary" href="/#!/tickets/{{ticket._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Purchased 
-			by
-			<span data-ng-bind="ticket.user.displayName"></span>
-			on
-			<span data-ng-bind="ticket.created | date:'mediumDate'"></span>
+	
+	<div class="col-sm-12" data-ng-show="((authentication.user) && (authentication.user._id == ticket.user._id))">
+		<span>Participant: {{ticket.firstName}} {{ticket.lastName}}</span>
+		<div class="pull-right">
+			<a class="btn btn-default" href="/#!/tickets/{{ticket._id}}/edit">
+				<i class="glyphicon glyphicon-edit"></i>
+			</a>
+			<a class="btn btn-default" data-ng-click="remove();">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</div>
+		<br />
+		<br />
+		<br />
+		<div barcode-generator="{{ticket.barcode}}" style="height:100px;">
 			
-			<br />
-			<span data-ng-bind="ticket.barcode"></span>
-			<div barcode-generator="{{ticket.barcode}}" style="height:100px;">
-		</em>
-	</small>
+		</div>
+		<small class="col-sm-12">
+			<em class="text-muted">
+				<span data-ng-bind="ticket._id"></span>
+	<!-- 			<div barcode-generator="{{ticket.barcode}}" style="height:100px;">
+	 -->		</em>
+		</small>
+	</div>
+
+	
+
+
 </section>

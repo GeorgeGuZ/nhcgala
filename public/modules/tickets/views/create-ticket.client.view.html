@@ -10,7 +10,7 @@
                         <div class="form-group">
                             <label class="control-label" for="firstName">First Name</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="firstName" id="firstName" class="form-control" placeholder="{{authentication.user.firstName}}" required>
+                                <input type="text" data-ng-model="firstName" id="firstName" class="form-control" ng-init="firstName = authentication.user.firstName" required>
                             </div>
                         </div>
                     </div>
@@ -18,11 +18,10 @@
                         <div class="form-group">
                             <label class="control-label" for="lastName">Last Name</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="lastName" id="lastName" class="form-control" placeholder="{{authentication.user.lastName}}" required>
+                                <input type="text" data-ng-model="lastName" id="lastName" class="form-control" ng-init="lastName = authentication.user.lastName" required>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="row">
                     <div class="jumbotron text-center">
