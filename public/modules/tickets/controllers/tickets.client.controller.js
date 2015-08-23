@@ -11,8 +11,6 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 			var ticket = new Tickets ({
 				firstName: this.firstName,
 				lastName: this.lastName,
-				payed: true,
-				price: 10.00,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
@@ -24,7 +22,6 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 				// Clear form fields
 				$scope.firstName = '',
 				$scope.lastName = '',
-				$scope.price = '';
 				$scope.barcode = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

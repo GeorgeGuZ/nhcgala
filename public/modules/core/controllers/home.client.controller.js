@@ -12,21 +12,21 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				color: "btn btn-success",
 				title: "Sign out",
 				url: "/auth/signout",
-				description: "Get a valid ID for event activities"
+				description: "Remember to Sign out"
 			},
 			{
 				icon: "glyphicon glyphicon-calendar",
 				color: "btn btn-warning",
 				title: "Event Preview",
 				url: "/#!/event",
-				description: "See what's awesome in our event"
+				description: "See what's awesome about our event"
 			},
 			{
 				icon: "glyphicon glyphicon-shopping-cart",
 				color: "btn btn-info",
 				title: "Buy Ticket",
 				url: "/#!/tickets/create",
-				description: "Pay with Paypal"
+				description: "Get a ticket for free"
 			},
 			{
 				icon: "glyphicon glyphicon-barcode",
@@ -51,21 +51,21 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				color: "btn btn-success",
 				title: "Register",
 				url: "/#!/signup",
-				description: "Get a valid ID for event activities"
+				description: "Get a valid ID for NHC Gala"
 			},
 			{
 				icon: "glyphicon glyphicon-calendar",
 				color: "btn btn-warning",
 				title: "Event Preview",
 				url: "/#!/event",
-				description: "See what's awesome in our event"
+				description: "See what's awesome about our event"
 			},
 			{
 				icon: "glyphicon glyphicon-shopping-cart",
 				color: "btn btn-info",
 				title: "Buy Ticket",
 				url: "/#!/signin",
-				description: "Pay with Paypal"
+				description: "Get a ticket for free"
 			},
 			
 		];

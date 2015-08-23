@@ -21,12 +21,7 @@ var TicketSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	price: {
-		type: Number,
-		default: '',
-		trim: true
-	},
-	payed: {
+	win: {
 		type: Boolean,
 		default: false
 	},
