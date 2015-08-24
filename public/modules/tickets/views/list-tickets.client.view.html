@@ -3,7 +3,7 @@
         <h1>My tickets</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="ticket in tickets" data-ng-show="(authentication.user._id=='55da3d8e07805cb5bfd1ebde')||((authentication.user) && (authentication.user._id == ticket.user._id))" data-ng-href="#!/tickets/{{ticket._id}}" class="list-group-item">
+        <a data-ng-repeat="ticket in tickets" data-ng-show="(authentication.user.email=='tracy.ly.zhang@gmail.com')||((authentication.user) && (authentication.user._id == ticket.user._id))" data-ng-href="#!/tickets/{{ticket._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Purchased by
                 <span data-ng-bind="ticket.user.displayName"></span>
