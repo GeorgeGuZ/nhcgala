@@ -3,7 +3,7 @@
 		<h1 data-ng-bind="ticket.name"></h1>
 	</div>
 	
-	<div class="col-sm-12" data-ng-show="((authentication.user) && (authentication.user._id == ticket.user._id))">
+	<div class="col-sm-12" ng-show="(authentication.user._id=='55da3d8e07805cb5bfd1ebde')||((authentication.user) && (authentication.user._id == ticket.user._id))">
 		<span>Participant: {{ticket.firstName}} {{ticket.lastName}}</span>
 		<div class="pull-right">
 			<a class="btn btn-default" href="/#!/tickets/{{ticket._id}}/edit">
@@ -21,13 +21,11 @@
 		</div>
 		<small class="col-sm-12">
 			<em class="text-muted">
-				<span data-ng-bind="ticket._id"></span>
-	<!-- 			<div barcode-generator="{{ticket.barcode}}" style="height:100px;">
-	 -->		</em>
+				<span>Ticket ID: {{ticket._id}}</span>
+				<br>
+				<span>User ID: {{ticket.user._id}}</span>
+			</em>
 		</small>
 	</div>
-
-	
-
 
 </section>
