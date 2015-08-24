@@ -42,8 +42,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 					icon: 'glyphicon glyphicon-gift',
 					color: 'btn btn-primary',
 					title: 'Lucky Draw',
-					url: '/#!/draw',
-					description: "who is the luckiest tonight?"
+					url: '/#!/draws',
+					description: 'who is the luckiest tonight?'
 				});
 			}
 		}
