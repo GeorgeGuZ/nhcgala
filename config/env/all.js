@@ -30,7 +30,8 @@ module.exports = {
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css'
+			'public/modules/**/css/*.css',
+			'http://fonts.googleapis.com/css?family=Open+Sans:300'
 		],
 		js: [
 			'public/config.js',

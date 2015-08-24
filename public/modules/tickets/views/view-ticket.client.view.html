@@ -3,7 +3,7 @@
 		<h1 data-ng-bind="ticket.name"></h1>
 	</div>
 	
-	<div class="col-sm-12" ng-show="(authentication.user.email=='tracy.ly.zhang@gmail.com')||((authentication.user) && (authentication.user._id == ticket.user._id))">
+	<div class="col-sm-12" ng-show="(authentication.user.roles[0]=='admin')||((authentication.user) && (authentication.user._id == ticket.user._id))">
 		<span>Participant: {{ticket.firstName}} {{ticket.lastName}}</span>
 		<div class="pull-right">
 			<a class="btn btn-default" href="/#!/tickets/{{ticket._id}}/edit">
