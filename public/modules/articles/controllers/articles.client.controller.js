@@ -3,17 +3,39 @@
 angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
 	function($scope, $stateParams, $location, Authentication, Articles) {
 		$scope.authentication = Authentication;
+		$scope.questions = [
+		{
+				id: 0,
+				content: "What's the best programming language in your mind?",
+				option: ["Java","c++","Python","Ruby"]
+		},
+		{
+				id: 1,
+				content: "What's your fav color?",
+				option: ["green","yellow","blue","black"]
+		},
+		{
+				id: 2,
+				content: "What's best of this event?",
+				option: ["part1","part2","part3","part4"]
+		},
+		{
+				id: 3,
+				content: "What's your name?",
+				option: ["lily","lucy","paul","john"]
+		}
 
+		];
 		$scope.create = function() {
 			var article = new Articles({
-				title: this.title,
-				content: this.content
+				answer: this.answer
+
 			});
 			article.$save(function(response) {
 				$location.path('articles/' + response._id);
 
-				$scope.title = '';
-				$scope.content = '';
+				$scope.answer = [''];
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
