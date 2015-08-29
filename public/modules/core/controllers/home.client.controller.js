@@ -16,13 +16,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				description: 'Remember to Sign out'
 			},
 			{
-				icon: 'glyphicon glyphicon-calendar',
-				color: 'btn btn-warning',
-				title: 'Event Preview',
-				url: '/#!/event',
-				description: 'See whats awesome about our event'
-			},
-			{
 				icon: 'glyphicon glyphicon-shopping-cart',
 				color: 'btn btn-info',
 				title: 'Buy Ticket',
@@ -36,6 +29,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				url: '/#!/tickets',
 				description: 'Want a barcode? Here!'
 			}
+			
 			];
 			if($scope.authentication.user.roles[0] === 'admin'){
 				$scope.menus.push({
@@ -43,7 +37,24 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 					color: 'btn btn-primary',
 					title: 'Lucky Draw',
 					url: '/#!/draws',
-					description: 'who is the luckiest tonight?'
+					description: 'Who is the luckiest tonight?'
+				});
+				$scope.menus.push({
+					icon: 'glyphicon glyphicon-pencil',
+					color: 'btn btn-warning',
+					title: 'Q & A result',
+					url: '/#!/articles',
+					description: 'Manage answers'
+				});
+				
+			}
+			else {
+				$scope.menus.push({
+					icon: 'glyphicon glyphicon-pencil',
+					color: 'btn btn-warning',
+					title: 'Q & A',
+					url: '/#!/articles/create',
+					description: 'Post an answer, get the reward'
 				});
 			}
 		}
