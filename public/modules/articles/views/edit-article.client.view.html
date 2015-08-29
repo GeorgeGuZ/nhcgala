@@ -2,8 +2,54 @@
 	<div class="page-header">
 		<h1>Update Answer</h1>
 	</div>
-	<div class="col-md-12">
-		<form name="articleForm" class="form-horizontal" data-ng-submit="update(articleForm.$valid)" novalidate>
+	<div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 form-bg">
+		<form name="articleForm" class="form-horizontal" ng-submit="update()" novalidate>
+
+			<fieldset ng-repeat="id in [0,1,2,3]" >
+			<h2 class="text-center">Question {{questions[id].id+1}}</h2>
+				<div class="row">
+					<div class="col-xs-12">
+<!-- 						<span>Question {{questions[id].id+1}}</span>
+ -->						<span>{{questions[id].content}} {{article.answer[id]=='D'}}</span>
+					</div>
+					<br />
+					<div class="col-xs-12 text-center form-group">
+						<div class="col-xs-3 text-center">
+							{{questions[id].option[0]}}
+						</div>
+						<div class="col-xs-3 text-center">
+							{{questions[id].option[1]}}
+						</div>
+						<div class="col-xs-3 text-center">
+							{{questions[id].option[2]}}
+						</div>
+						<div class="col-xs-3 text-center">
+							{{questions[id].option[3]}}
+						</div>
+
+						<div class="col-xs-3 text-center">
+							<input type="radio" ng-model="article.answer[id]" value="A">
+						</div>
+						<div class="col-xs-3 text-center">
+							<input type="radio" ng-model="article.answer[id]" value="B">
+						</div>
+						<div class="col-xs-3 text-center">
+							<input type="radio" ng-model="article.answer[id]" value="C">
+						</div>
+						<div class="col-xs-3 text-center">
+							<input type="radio" ng-model="article.answer[id]" value="D">
+						</div>
+					</div>
+
+					<br />
+				</div>
+				
+			</fieldset>
+			<div class="text-center form-group col-xs-12" >
+						<input type="submit" class="btn btn-danger btn-lg btn-block">
+				</div>
+		</form>
+		<!-- <form name="articleForm" class="form-horizontal" data-ng-submit="update(articleForm.$valid)" novalidate>
 			<fieldset>
 				<div class="form-group" ng-class="{ 'has-error' : submitted && articleForm.title.$invalid}">
 					<label class="control-label" for="title">Title</label>
@@ -30,6 +76,6 @@
 					<strong data-ng-bind="error"></strong>
 				</div>
 			</fieldset>
-		</form>
+		</form> -->
 	</div>
 </section>

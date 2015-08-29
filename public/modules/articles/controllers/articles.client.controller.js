@@ -6,7 +6,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 		$scope.questions = [
 		{
 				id: 0,
-				content: "What's the best programming language in your mind?",
+				content: "What's the best programming language in your opinion?",
 				option: ["Java","c++","Python","Ruby"]
 		},
 		{
@@ -21,8 +21,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 		},
 		{
 				id: 3,
-				content: "What's your name?",
-				option: ["lily","lucy","paul","john"]
+				content: "Which contry are you from?",
+				option: ["Italy","China","Canada","England"]
 		}
 
 		];
