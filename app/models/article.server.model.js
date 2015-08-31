@@ -15,7 +15,8 @@ var ArticleSchema = new Schema({
 		default: Date.now
 	},
 	updated: {
-		type: Date
+		type: Date,
+		default: Date.now
 	},
 	answer: {
 		type: [{
@@ -23,6 +24,16 @@ var ArticleSchema = new Schema({
 			enum: ['A', 'B', 'C', 'D', ''],
 			default: ['']
 		}]
+	},
+	correctAnswer: {
+		type: [{
+			type: String,
+			enum: ['A', 'B', 'C', 'D', '']
+		}]
+	},
+	score: {
+		type: Number,
+		default: 0
 	},
 	user: {
 		type: Schema.ObjectId,

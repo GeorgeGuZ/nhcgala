@@ -19,7 +19,13 @@
 		</em>
 	</small>
 	<p class="lead">{{article.answer}}</p>
-
+	<br />
+	
+	<div ng-show="authentication.user.roles[0]=='admin'">
+		correct <p class="lead">{{article.correctAnswer}}</p>
+		score <p class="lead">{{article.score}}</p>
+	</div>
+	
 <!-- 	<p class="lead" data-ng-repeat="answer in article.answer">{{$index+1}}: {{answer}}</p>
  -->
 </section>

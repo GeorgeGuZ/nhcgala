@@ -28,9 +28,18 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 		];
 		$scope.create = function() {
 			var article = new Articles({
-				answer: this.answer
-
+				answer: this.answer,
+				correctAnswer: ['B','B','B','B']
 			});
+		
+			var score = 0;			
+			for (var i in article.correctAnswer) {
+				if ( article.answer[i]===article.correctAnswer[i]) {
+					score++;
+				}
+			}
+			article.score = score;
+
 			article.$save(function(response) {
 				$location.path('articles/' + response._id);
 
@@ -60,6 +69,14 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 		$scope.update = function() {
 			var article = $scope.article;
 
+			article.updated = new Date(Date.now());
+			var score = 0;			
+			for (var i in article.correctAnswer) {
+				if ( article.answer[i]===article.correctAnswer[i]) {
+					score++;
+				}
+			}
+			article.score = score;
 			article.$update(function() {
 				$location.path('articles/' + article._id);
 			}, function(errorResponse) {

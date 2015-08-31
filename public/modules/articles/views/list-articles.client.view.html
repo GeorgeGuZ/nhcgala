@@ -3,15 +3,19 @@
 		<h1>Answer</h1>
 	</div>
 	<div class="list-group">
-		<a data-ng-repeat="article in articles" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
+		<a data-ng-repeat="article in articles | orderBy:['-score','updated']" data-ng-show="(authentication.user.roles[0]=='admin')||((authentication.user) && (authentication.user._id == article.user._id))" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
 			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="article.created | date:'mediumDate'"></span>
+				Last edit on
+<!-- 				<span data-ng-bind="article.updated "></span>
+ -->				<span data-ng-bind="article.updated | date:'medium'"></span>
 				by
 				<span data-ng-bind="article.user.displayName"></span>
+				<div data-ng-show="authentication.user.roles[0]=='admin'">
+					score: <span data-ng-bind="article.score"></span>
+				</div>
+				
 			</small>
-			<!-- <h4 class="list-group-item-heading" data-ng-bind="article.title"></h4>
-			<p class="list-group-item-text" data-ng-bind="article.content"></p> -->
+			
 		</a>
 	</div>
 	<div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
