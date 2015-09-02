@@ -86,7 +86,7 @@ exports.delete = function(req, res) {
 // };
 
 exports.list = function(req, res) { 
-	User.find().sort('-created').exec(function(err, draws) {
+	User.find().where('roles').equals(['user']).sort('-created').exec(function(err, draws) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -112,7 +112,7 @@ exports.drawByID = function(req, res, next, id) {
  * Draw authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.draw.user.id !== req.user.id) {
+	if (req.draw.user.roles[0]!=='admin') {
 		return res.status(403).send('User is not authorized');
 	}
 	next();

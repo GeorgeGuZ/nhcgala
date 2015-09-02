@@ -1,4 +1,4 @@
-<section data-ng-controller="DrawsController">
+<!-- <section data-ng-controller="DrawsController">
     <div class="page-header">
         <h1>New Draw</h1>
     </div>
@@ -20,4 +20,50 @@
             </fieldset>
         </form>
     </div>
-</section>
+</section> -->
+
+<section data-ng-controller="DrawsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Lucky numbers</h1>
+    </div>
+    <button class="btn btn-success btn-lg" ng-click = "getUser(draws.length,draws)">Begin</button>
+
+
+    <div class="list-group">
+        <div data-ng-repeat="draw in candidates | orderBy:['roles[0]','-created'] " class="list-group-item" data-ng-show="((authentication.user.roles[0]=='admin')||(authentication.user))">
+                <!-- <a class="btn btn-primary pull-right" data-ng-click="remove(draw);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a> -->
+            <small class="list-group-item-text">
+                <span>Name: {{draw.displayName}}</span>
+                <br>
+                <span>Email: {{draw.email}}</span>
+                <br />
+                
+            </small>
+        </div>
+    </div>
+    <div class="page-header">
+        <h1>Rest of Candidates</h1>
+    </div>
+    <div class="list-group">
+        <div data-ng-repeat="draw in draws| orderBy:['roles[0]','-created'] " class="list-group-item" data-ng-show="((authentication.user.roles[0]=='admin')||(authentication.user))">
+                <!-- <a class="btn btn-primary pull-right" data-ng-click="remove(draw);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a> -->
+            <small class="list-group-item-text">
+                <span >---{{draw.roles[0] | uppercase}}---</span>
+                <span>Name: {{draw.displayName}}</span>
+                <span>Email: {{draw.email}}</span>
+                <br />
+                Registered on
+                <span data-ng-bind="draw.created | date:'medium'"></span>
+                
+            </small>
+        </div>
+    </div>
+
+
+
+
+  </section>

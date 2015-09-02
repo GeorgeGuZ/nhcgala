@@ -4,6 +4,23 @@
 angular.module('draws').controller('DrawsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Draws',
 	function($scope, $stateParams, $location, Authentication, Draws) {
 		$scope.authentication = Authentication;
+		$scope.candidates = [];
+		// Find a list of Draws
+		$scope.find = function() {
+			$scope.draws = Draws.query();
+		};
+
+		
+		$scope.getUser = function(top,draws) {
+			if(top > 0) {
+				var i = Math.ceil(Math.random() * (top-1));
+				$scope.candidates.push(draws[i]);
+				$scope.draws.splice(i, 1);
+			}
+			
+		};
+
+
 
 		// Create new Draw
 		$scope.create = function() {
@@ -51,10 +68,6 @@ angular.module('draws').controller('DrawsController', ['$scope', '$stateParams',
 			});
 		};
 
-		// Find a list of Draws
-		$scope.find = function() {
-			$scope.draws = Draws.query();
-		};
 
 		// Find existing Draw
 		$scope.findOne = function() {

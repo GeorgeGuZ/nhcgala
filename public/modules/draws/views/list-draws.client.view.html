@@ -3,7 +3,10 @@
         <h1>All users </h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="draw in draws| orderBy:['roles[0]','-created']" class="list-group-item" data-ng-show="(authentication.user.roles[0]=='admin')||((authentication.user)">
+        <div data-ng-repeat="draw in draws| orderBy:['roles[0]','-created']" class="list-group-item" data-ng-show="(authentication.user.roles[0]=='admin')||(authentication.user)">
+                <!-- <a class="btn btn-primary pull-right" data-ng-click="remove(draw);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a> -->
 			<small class="list-group-item-text">
                 <span >---{{draw.roles[0] | uppercase}}---</span>
                 <span>Name: {{draw.displayName}}</span>
@@ -14,7 +17,7 @@
 				
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="draw.name"></h4>
-        </a>
+        </div>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!draws.$resolved || draws.length">
     	No Draws yet, why don't you <a href="/#!/draws/create">create one</a>?
