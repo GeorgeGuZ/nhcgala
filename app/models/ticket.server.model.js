@@ -21,9 +21,13 @@ var TicketSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	win: {
+	referred: {
 		type: Boolean,
 		default: false
+	},
+	price: {
+		type: Number,
+		default: 85
 	},
 	barcode: {
 		type: String,

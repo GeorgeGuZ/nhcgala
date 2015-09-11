@@ -3,10 +3,10 @@
 		<!-- <h1 data-ng-bind="article.title"></h1> -->
 	</div>
 	<div class="pull-right" data-ng-show="authentication.user._id == article.user._id">
-		<a class="btn btn-primary" href="/#!/articles/{{article._id}}/edit">
+		<a class="btn btn-default" href="/#!/articles/{{article._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
+		<a class="btn btn-default" data-ng-click="remove();">
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
@@ -19,13 +19,16 @@
 		</em>
 	</small>
 	<p class="lead">{{article.answer}}</p>
+
+
 	<br />
 	
 	<div ng-show="authentication.user.roles[0]=='admin'">
 		correct <p class="lead">{{article.correctAnswer}}</p>
 		score <p class="lead">{{article.score}}</p>
 	</div>
+	round <p class="lead">{{article.round}}</p>
+
 	
-<!-- 	<p class="lead" data-ng-repeat="answer in article.answer">{{$index+1}}: {{answer}}</p>
- -->
+
 </section>

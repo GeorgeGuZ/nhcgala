@@ -7,6 +7,7 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 		$scope.authentication = Authentication;
 		// Create new Ticket
 		$scope.create = function() {
+			var refer = ['8888','6666']
 			// Create new Ticket object
 			var ticket = new Tickets ({
 				firstName: this.firstName,
@@ -14,6 +15,12 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
+				for (var ref in refer) {
+					if (refer[ref] ==this.refercode){
+					ticket.referred = true;	
+					ticket.price = 75;
+					}
+				}
 
 			// Redirect after save
 			ticket.$save(function(response) {
@@ -22,6 +29,7 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 				// Clear form fields
 				$scope.firstName = '',
 				$scope.lastName = '',
+				$scope.refercode = '',
 				$scope.barcode = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

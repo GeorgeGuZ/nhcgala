@@ -5,6 +5,8 @@
 	
 	<div class="col-sm-12" ng-show="(authentication.user.roles[0]=='admin')||((authentication.user) && (authentication.user._id == ticket.user._id))">
 		<span>Participant: {{ticket.firstName}} {{ticket.lastName}}</span>
+		<br>
+		<span>Price: {{ticket.price}}</span>
 		<div class="pull-right">
 			<a class="btn btn-default" href="/#!/tickets/{{ticket._id}}/edit">
 				<i class="glyphicon glyphicon-edit"></i>
@@ -19,7 +21,7 @@
 		<div barcode-generator="{{ticket.barcode}}" style="height:100px;">
 			
 		</div>
-		<small class="col-sm-12">
+		<small class="col-sm-12" ng-show="authentication.user.roles[0]=='admin'">
 			<em class="text-muted">
 				<span>Ticket ID: {{ticket._id}}</span>
 				<br>

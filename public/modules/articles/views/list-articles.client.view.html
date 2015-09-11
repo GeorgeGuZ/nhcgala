@@ -1,9 +1,16 @@
 <section data-ng-controller="ArticlesController" data-ng-init="find()">
 	<div class="page-header">
-		<h1>Answer</h1>
+		<div class="container">
+			<ul class="nav nav-pills">
+			  <li role="presentation" ng-class="{active:round==1}"><a href ng-click="round = 1" >round 1</a></li>
+			  <li role="presentation" ng-class="{active:round==2}"><a href ng-click="round = 2" >round 2</a></li>
+			  <li role="presentation" ng-class="{active:round==3}"><a href ng-click="round = 3" >round 3</a></li>
+			</ul>
+		</div>
 	</div>
+
 	<div class="list-group">
-		<a data-ng-repeat="article in articles | orderBy:['-score','updated']" data-ng-show="(authentication.user.roles[0]=='admin')||((authentication.user) && (authentication.user._id == article.user._id))" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
+		<a data-ng-repeat="article in articles | orderBy:['-score','updated']" ng-show="((authentication.user.roles[0]=='admin')||(authentication.user && authentication.user._id == article.user._id)) && article.round == round" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Last edit on
 <!-- 				<span data-ng-bind="article.updated "></span>
@@ -11,6 +18,7 @@
 				by
 				<span data-ng-bind="article.user.displayName"></span>
 				<div data-ng-show="authentication.user.roles[0]=='admin'">
+					round: <span data-ng-bind="article.round"></span>
 					score: <span data-ng-bind="article.score"></span>
 				</div>
 				
@@ -18,6 +26,9 @@
 			
 		</a>
 	</div>
+
+
+	
 	<div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
 		No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
 	</div>
