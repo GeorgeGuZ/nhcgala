@@ -29,8 +29,7 @@ var ArticleSchema = new Schema({
 		type: [{
 			type: String,
 			enum: ['A', 'B', 'C', 'D', '']
-		}],
-		default: ['B','B','B','B']
+		}]
 	},
 	round: {
 		type: Number,

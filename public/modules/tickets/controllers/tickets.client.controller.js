@@ -5,13 +5,19 @@ var app =angular.module('tickets');
 app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
+		$scope.tables=[];
+
+		for (var i=1;i<=50;i++) {
+			$scope.tables.push(i);
+		}
 		// Create new Ticket
 		$scope.create = function() {
-			var refer = ['8888','6666']
+			var refer = ['8888','6666'];
 			// Create new Ticket object
 			var ticket = new Tickets ({
 				firstName: this.firstName,
 				lastName: this.lastName,
+				table: this.table,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
