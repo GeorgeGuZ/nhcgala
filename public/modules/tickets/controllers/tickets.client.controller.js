@@ -25,13 +25,20 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			 method: 'POST',
 			 url: 'http://gateway.nhccareer.com:8080/gala/rest/charge',
 			 headers: {
-			   'Content-Type': "application/json"
+			   'Content-Type': 'application/x-www-form-urlencoded',
+			   'Access-Control-Allow-Origin': '*'
 			 },
 			 data: card
 			}
-			$http(req).success(function(data){
-				alert(data);
-			});
+			$http(req).then(function(response) {
+			    // this callback will be called asynchronously
+			    // when the response is available
+			    alert('success');
+			  }, function(response) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			    alert('fail');
+			  });
 			var refer = ['8888','6666'];
 			// Create new Ticket object
 			var ticket = new Tickets ({
