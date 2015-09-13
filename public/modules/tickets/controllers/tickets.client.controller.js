@@ -6,15 +6,6 @@ var app =angular.module('tickets');
 app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
-		 $scope.handleStripe = function(status, response){
-        if(response.error) {
-          // there was an error. Fix it.
-        } else {
-          // got stripe token, now charge it or smt
-          token = response.id;
-        }
-      };
-
 		$scope.tables=[];
 
 		for (var i=1;i<=50;i++) {

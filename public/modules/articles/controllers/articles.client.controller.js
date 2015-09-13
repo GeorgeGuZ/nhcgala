@@ -7,93 +7,63 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 		$scope.questions = [
 		{
 				id: 0,
-				content: "this is question 1",
-				option: ["Java","c++","Python","Ruby"]
+				content: 'this is question 1',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 1,
-				content: "this is question 2",
-				option: ["green","yellow","blue","black"]
+				content: 'this is question 2',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 2,
-				content: "this is question 3",
-				option: ["part1","part2","part3","part4"]
+				content: 'this is question 3',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 3,
-				content: "this is question 4",
-				option: ["Italy","China","Canada","England"]
+				content: 'this is question 4',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 4,
-				content: "this is question 5",
-				option: ["part1","part2","part3","part4"]
+				content: 'this is question 5',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 5,
-				content: "this is question 6",
-				option: ["part1","part2","part3","part4"]
+				content: 'this is question 6',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 6,
-				content: "this is question 7",
-				option: ["Java","c++","Python","Ruby"]
+				content: 'this is question 7',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 7,
-				content: "this is question 8",
-				option: ["green","yellow","blue","black"]
+				content: 'this is question 8',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 8,
-				content: "this is question 9",
-				option: ["part1","part2","part3","part4"]
+				content: 'this is question 9',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 9,
-				content: "this is question 10",
-				option: ["Italy","China","Canada","England"]
+				content: 'this is question 10',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 10,
-				content: "this is question 11",
-				option: ["part1","part2","part3","part4"]
+				content: 'this is question 11',
+				option: ['part1','part2','part3','part4']
 		},
 		{
 				id: 11,
-				content: "this is question 12",
-				option: ["part1","part2","part3","part4"]
-		},
-		{
-				id: 12,
-				content: "this is question 13",
-				option: ["part1","part2","part3","part4"]
-		},
-		{
-				id: 13,
-				content: "this is question 14",
-				option: ["Italy","China","Canada","England"]
-		},
-		{
-				id: 14,
-				content: "this is question 15",
-				option: ["part1","part2","part3","part4"]
-		},
-		{
-				id: 15,
-				content: "this is question 16",
-				option: ["part1","part2","part3","part4"]
-		},
-		{
-				id: 16,
-				content: "this is question 17",
-				option: ["Java","c++","Python","Ruby"]
-		},
-		{
-				id: 17,
-				content: "this is question 18",
-				option: ["green","yellow","blue","black"]
+				content: 'this is question 12',
+				option: ['part1','part2','part3','part4']
 		}
 
 		];
@@ -101,8 +71,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 			var article = new Articles({
 				answer: this.answer,
 				correctAnswer: ['A','A','A','A','A','A',
-								'B','B','B','B','B','B',
-								'C','C','C','C','C','C'
+								'B','B','B','B','B','B'
 								],
 				round: this.round
 			});

@@ -4,7 +4,6 @@
 			<ul class="nav nav-pills">
 			  <li role="presentation" ng-class="{active:round==1}"><a href ng-click="round = 1" >round 1</a></li>
 			  <li role="presentation" ng-class="{active:round==2}"><a href ng-click="round = 2" >round 2</a></li>
-			  <li role="presentation" ng-class="{active:round==3}"><a href ng-click="round = 3" >round 3</a></li>
 			</ul>
 		</div>
 	</div>
@@ -13,8 +12,7 @@
 		<a data-ng-repeat="article in articles | orderBy:['-score','updated']" ng-show="((authentication.user.roles[0]=='admin')||(authentication.user && authentication.user._id == article.user._id)) && article.round == round" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Last edit on
-<!-- 				<span data-ng-bind="article.updated "></span>
- -->				<span data-ng-bind="article.updated | date:'medium'"></span>
+				<span data-ng-bind="article.updated | date:'medium'"></span>
 				by
 				<span data-ng-bind="article.user.displayName"></span>
 				<div data-ng-show="authentication.user.roles[0]=='admin'">
