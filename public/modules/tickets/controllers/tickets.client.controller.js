@@ -3,16 +3,35 @@
 // Tickets controller
 
 var app =angular.module('tickets');
-app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
-	function($scope, $stateParams, $location, Authentication, Tickets) {
+app.controller('TicketsController', ['$scope','$http', '$stateParams', '$location', 'Authentication', 'Tickets',
+	function($scope, $http, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
 		$scope.tables=[];
 
 		for (var i=1;i<=50;i++) {
 			$scope.tables.push(i);
 		}
+
 		// Create new Ticket
 		$scope.create = function() {
+			var expiryDate = this.expiry.split('/');
+			var card = {
+				"number": this.number,
+				"expMonth": expiryDate[0],
+				"expYear": expiryDate[1],
+				"receiptEmail": $scope.authentication.user.email
+			}
+			var req = {
+			 method: 'POST',
+			 url: 'http://gateway.nhccareer.com:8080/gala/rest/charge',
+			 headers: {
+			   'Content-Type': "application/json"
+			 },
+			 data: card
+			}
+			$http(req).success(function(data){
+				alert(data);
+			});
 			var refer = ['8888','6666'];
 			// Create new Ticket object
 			var ticket = new Tickets ({
