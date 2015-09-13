@@ -29,6 +29,10 @@ var TicketSchema = new Schema({
 		type: Number,
 		default: 85
 	},
+	token: {
+		type: String,
+		default: ''
+	},
 	barcode: {
 		type: String,
 		default: '',

@@ -1,10 +1,20 @@
 'use strict';
 
 // Tickets controller
+
 var app =angular.module('tickets');
 app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
+		 $scope.handleStripe = function(status, response){
+        if(response.error) {
+          // there was an error. Fix it.
+        } else {
+          // got stripe token, now charge it or smt
+          token = response.id;
+        }
+      };
+
 		$scope.tables=[];
 
 		for (var i=1;i<=50;i++) {
@@ -18,6 +28,7 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 				firstName: this.firstName,
 				lastName: this.lastName,
 				table: this.table,
+				token: this.token,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
@@ -82,3 +93,7 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 		};
 	}
 ]);
+
+
+
+
