@@ -25,18 +25,18 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 
 			});
 			for (var ref in refer) {
-						if (refer[ref] ==this.refercode){
-						ticket.referred = true;	
-						ticket.price = 75;
-						}
-					}
+					if (refer[ref] === this.refercode){
+					ticket.referred = true;	
+					ticket.price = 75;
+				}
+			}
 			var expiryDate = this.expiry.split('/');
 			var card = {
 				"number": this.number,
 				"expMonth": expiryDate[0],
 				"expYear": expiryDate[1],
 				"receiptEmail": $scope.authentication.user.email
-			}
+			};
 			var req = {
 			 method: 'POST',
 			 url: 'http://gateway.nhccareer.com:8080/gala/rest/charge',
@@ -44,7 +44,7 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			   'Content-Type': 'application/json'
 			 },
 			 data: card
-			}
+			};
 			$http(req).then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -54,10 +54,9 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 					$location.path('tickets/' + response._id);
 
 					// Clear form fields
-					$scope.firstName = '',
-					$scope.lastName = '',
-					$scope.refercode = '',
-					$scope.barcode = '';
+					$scope.firstName = '';
+					$scope.lastName = '';
+					$scope.refercode = '';
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
