@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Ticket = mongoose.model('Ticket'),
+	Table = mongoose.model('Table'),
 	_ = require('lodash');
 
 /**
@@ -14,6 +15,20 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var ticket = new Ticket(req.body);
 	ticket.user = req.user;
+
+	var table = Table.findOne({
+		id: ticket.tableId
+	},function(err, selectedTable){
+
+			selectedTable.tickets.push(ticket._id);
+			selectedTable.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} 
+		});
+	});
 
 	ticket.save(function(err) {
 		if (err) {
@@ -57,7 +72,23 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 	var ticket = req.ticket ;
-
+	var table = Table.findOne({
+		id: ticket.tableId
+	},function(err, selectedTable){
+			for(var i = selectedTable.tickets.length - 1; i >= 0; i--) {
+			    if(_.isEqual(selectedTable.tickets[i],ticket._id)) {
+			       selectedTable.tickets.splice(i, 1);
+			    }
+			}
+			
+			selectedTable.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} 
+		});
+	});
 	ticket.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -79,7 +110,24 @@ exports.list = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(tickets);
+			Table.find().populate('user', 'displayName').exec(function(err,tables){
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				}else {
+					// if (req.body.list === true) {
+						// res.jsonp(tickets);
+					// }
+					// else {
+					// 	res.jsonp(tables);
+					// }
+					// res.jsonp({'listticket': tickets, 'listtable': tables});
+					res.jsonp([tickets,tables][0]);
+				}
+
+			});
+			// res.jsonp(tickets);
 		}
 	});
 };

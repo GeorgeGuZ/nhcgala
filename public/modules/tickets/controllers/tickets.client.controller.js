@@ -8,23 +8,29 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 		$scope.authentication = Authentication;
 		$scope.tables=[];
 
+
+
 		for (var i=1;i<=50;i++) {
 			$scope.tables.push(i);
 		}
+
+
 		// Create new Ticket
 		$scope.create = function() {
 			var refer = ['8888','6666'];
+
+
 			// Create new Ticket object
 			var ticket = new Tickets ({
 				firstName: this.firstName,
 				lastName: this.lastName,
-				table: this.table,
+				tableId: this.table,
 				token: this.token,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
 				for (var ref in refer) {
-					if (refer[ref] ==this.refercode){
+					if (refer[ref] === this.refercode){
 					ticket.referred = true;	
 					ticket.price = 75;
 					}
@@ -35,10 +41,9 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 				$location.path('tickets/' + response._id);
 
 				// Clear form fields
-				$scope.firstName = '',
-				$scope.lastName = '',
-				$scope.refercode = '',
-				$scope.barcode = '';
+				$scope.firstName = '';
+				$scope.lastName = '';
+				$scope.refercode = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -69,6 +74,10 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+		};
+		$scope.findTable = function() {
+			$scope.tables = Tickets.query();
+
 		};
 
 		// Find a list of Tickets
