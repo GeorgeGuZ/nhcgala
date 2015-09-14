@@ -25,7 +25,7 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			 method: 'POST',
 			 url: 'http://gateway.nhccareer.com:8080/gala/rest/charge',
 			 headers: {
-			   'Content-Type': 'application/x-www-form-urlencoded',
+			   'Content-Type': 'application/json',
 			   'Access-Control-Allow-Origin': '*'
 			 },
 			 data: card
@@ -34,40 +34,41 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			    // this callback will be called asynchronously
 			    // when the response is available
 			    alert('success');
-			  }, function(response) {
+			    var refer = ['8888','6666'];
+				// Create new Ticket object
+				var ticket = new Tickets ({
+					firstName: this.firstName,
+					lastName: this.lastName,
+					table: this.table,
+					token: this.token,
+					barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
+
+				});
+					for (var ref in refer) {
+						if (refer[ref] ==this.refercode){
+						ticket.referred = true;	
+						ticket.price = 75;
+						}
+					}
+
+				// Redirect after save
+				ticket.$save(function(response) {
+					$location.path('tickets/' + response._id);
+
+					// Clear form fields
+					$scope.firstName = '',
+					$scope.lastName = '',
+					$scope.refercode = '',
+					$scope.barcode = '';
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}, function(response) {
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			    alert('fail');
-			  });
-			var refer = ['8888','6666'];
-			// Create new Ticket object
-			var ticket = new Tickets ({
-				firstName: this.firstName,
-				lastName: this.lastName,
-				table: this.table,
-				token: this.token,
-				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
-
 			});
-				for (var ref in refer) {
-					if (refer[ref] ==this.refercode){
-					ticket.referred = true;	
-					ticket.price = 75;
-					}
-				}
-
-			// Redirect after save
-			ticket.$save(function(response) {
-				$location.path('tickets/' + response._id);
-
-				// Clear form fields
-				$scope.firstName = '',
-				$scope.lastName = '',
-				$scope.refercode = '',
-				$scope.barcode = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+			
 		};
 
 		// Remove existing Ticket
