@@ -14,6 +14,16 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 
 		// Create new Ticket
 		$scope.create = function() {
+			var refer = ['8888','6666'];
+			// Create new Ticket object
+			var ticket = new Tickets ({
+				firstName: this.firstName,
+				lastName: this.lastName,
+				table: this.table,
+				token: this.token,
+				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
+
+			});
 			var expiryDate = this.expiry.split('/');
 			var card = {
 				"number": this.number,
@@ -25,32 +35,14 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			 method: 'POST',
 			 url: 'http://gateway.nhccareer.com:8080/gala/rest/charge',
 			 headers: {
-			   'Content-Type': 'application/json',
-			   'Access-Control-Allow-Origin': '*'
+			   'Content-Type': 'application/json'
 			 },
 			 data: card
 			}
 			$http(req).then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
-			    alert('success');
-			    var refer = ['8888','6666'];
-				// Create new Ticket object
-				var ticket = new Tickets ({
-					firstName: this.firstName,
-					lastName: this.lastName,
-					table: this.table,
-					token: this.token,
-					barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
-
-				});
-					for (var ref in refer) {
-						if (refer[ref] ==this.refercode){
-						ticket.referred = true;	
-						ticket.price = 75;
-						}
-					}
-
+			    $scope.error = 'ticket purchased!';
 				// Redirect after save
 				ticket.$save(function(response) {
 					$location.path('tickets/' + response._id);
@@ -66,7 +58,7 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			}, function(response) {
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
-			    alert('fail');
+			    $scope.error = response;
 			});
 			
 		};
