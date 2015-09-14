@@ -123,7 +123,7 @@ exports.list = function(req, res) {
 					// 	res.jsonp(tables);
 					// }
 					// res.jsonp({'listticket': tickets, 'listtable': tables});
-					res.jsonp([tickets,tables][0]);
+					res.jsonp([tickets,tables]);
 				}
 
 			});

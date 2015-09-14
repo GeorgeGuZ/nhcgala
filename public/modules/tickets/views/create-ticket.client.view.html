@@ -1,5 +1,5 @@
 
-  <section data-ng-controller="TicketsController">
+  <section data-ng-controller="TicketsController" ng-init="find()">
     <div class="page-header">
         <h1>Buy Ticket</h1>
     </div>
@@ -41,16 +41,22 @@
                         </div>
                     </div>
 
+<!--                     <div class="col-sm-12 text-center container">
+                        <div class="form-group">
+                            <label for="table"> Select your table: </label><br>
+                            <select ng-model="table">
+                              <option ng-repeat="table in tables" value="{{table.id}}">{{table.id}}</option>
+                            </select>
+                        </div> 
+                    </div> -->
                     <div class="col-sm-12 text-center container">
                         <div class="form-group">
                             <label for="table"> Select your table: </label><br>
                             <select ng-model="table">
-                              <option ng-repeat="table in tables" value="{{table}}">{{table}}</option>
+                              <option ng-repeat="table in tables" ng-disabled='table.tickets.length==10' value="{{table.id}} ">{{table.id}}</option>
                             </select>
-                        </div>
-                        
+                        </div> 
                     </div>
-
                     <div class="col-sm-12 text-center container">
                         <div class="form-group">
                         <label for="">Card number</label>
@@ -78,7 +84,7 @@
                     <button type="submit" class="btn btn-lg btn-default">Submit</button>
                 </div>
                 <div data-ng-show="error" class="text-danger">
-                  <strong data-ng-bind="error[0]"></strong>
+                  <strong data-ng-bind="error"></strong>
                 </div>
             </fieldset>
         </form>

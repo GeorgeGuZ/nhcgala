@@ -6,11 +6,11 @@ var app =angular.module('tickets');
 app.controller('TicketsController', ['$scope','$http', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $http, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
-		$scope.tables=[];
+		// $scope.tables=[];
 
-		for (var i=1;i<=50;i++) {
-			$scope.tables.push(i);
-		}
+		// for (var i=1;i<=50;i++) {
+		// 	$scope.tables.push(i);
+		// }
 
 		// Create new Ticket
 		$scope.create = function() {
@@ -47,6 +47,7 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			 },
 			 data: card
 			}
+
 			$http(req).then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -99,7 +100,10 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 
 		// Find a list of Tickets
 		$scope.find = function() {
-			$scope.tickets = Tickets.query();
+			$scope.queryResult = Tickets.query(function(){
+				$scope.tickets = $scope.queryResult[0];
+				$scope.tables = $scope.queryResult[1];
+			});
 		};
 
 		// Find existing Ticket
