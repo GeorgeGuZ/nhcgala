@@ -3,50 +3,69 @@
 // Tickets controller
 
 var app =angular.module('tickets');
-app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tickets',
-	function($scope, $stateParams, $location, Authentication, Tickets) {
+app.controller('TicketsController', ['$scope','$http', '$stateParams', '$location', 'Authentication', 'Tickets',
+	function($scope, $http, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
 		$scope.tables=[];
-
-
 
 		for (var i=1;i<=50;i++) {
 			$scope.tables.push(i);
 		}
 
-
 		// Create new Ticket
 		$scope.create = function() {
 			var refer = ['8888','6666'];
-
-
 			// Create new Ticket object
 			var ticket = new Tickets ({
 				firstName: this.firstName,
 				lastName: this.lastName,
-				tableId: this.table,
+				table: this.table,
 				token: this.token,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
-				for (var ref in refer) {
-					if (refer[ref] === this.refercode){
+			for (var ref in refer) {
+					if (refer[ref] ==this.refercode){
 					ticket.referred = true;	
 					ticket.price = 75;
-					}
 				}
+			var expiryDate = this.expiry.split('/');
+			var card = {
+				"number": this.number,
+				"expMonth": expiryDate[0],
+				"expYear": expiryDate[1],
+				"receiptEmail": $scope.authentication.user.email
+			}
+			var req = {
+			 method: 'POST',
+			 url: 'http://gateway.nhccareer.com:8080/gala/rest/charge',
+			 headers: {
+			   'Content-Type': 'application/json'
+			 },
+			 data: card
+			}
+			$http(req).then(function(response) {
+			    // this callback will be called asynchronously
+			    // when the response is available
+			    $scope.error = 'ticket purchased!';
+				// Redirect after save
+				ticket.$save(function(response) {
+					$location.path('tickets/' + response._id);
 
-			// Redirect after save
-			ticket.$save(function(response) {
-				$location.path('tickets/' + response._id);
+					// Clear form fields
+					$scope.firstName = '';
+					$scope.lastName = '';
+					$scope.refercode = '';
 
-				// Clear form fields
-				$scope.firstName = '';
-				$scope.lastName = '';
-				$scope.refercode = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}, function(response) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			    $scope.error = response;
 			});
+			
 		};
 
 		// Remove existing Ticket
@@ -74,10 +93,6 @@ app.controller('TicketsController', ['$scope', '$stateParams', '$location', 'Aut
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-		};
-		$scope.findTable = function() {
-			$scope.tables = Tickets.query();
-
 		};
 
 		// Find a list of Tickets
