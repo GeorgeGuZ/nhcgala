@@ -19,16 +19,17 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			var ticket = new Tickets ({
 				firstName: this.firstName,
 				lastName: this.lastName,
-				table: this.table,
+				tableId: this.table,
 				token: this.token,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
 			for (var ref in refer) {
-					if (refer[ref] ==this.refercode){
-					ticket.referred = true;	
-					ticket.price = 75;
-				}
+						if (refer[ref] ==this.refercode){
+						ticket.referred = true;	
+						ticket.price = 75;
+						}
+					}
 			var expiryDate = this.expiry.split('/');
 			var card = {
 				"number": this.number,
@@ -53,10 +54,10 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 					$location.path('tickets/' + response._id);
 
 					// Clear form fields
-					$scope.firstName = '';
-					$scope.lastName = '';
-					$scope.refercode = '';
-
+					$scope.firstName = '',
+					$scope.lastName = '',
+					$scope.refercode = '',
+					$scope.barcode = '';
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
