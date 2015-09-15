@@ -36,7 +36,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 					icon: 'glyphicon glyphicon-gift',
 					color: 'btn btn-primary',
 					title: 'Lucky Draw',
-					url: '/#!/draws',
+					url: '/#!/draws/create',
 					description: 'Ready to get your new iPhone 6s?'
 				});
 				$scope.menus.push({
@@ -45,6 +45,13 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 					title: 'Q & A result',
 					url: '/#!/articles',
 					description: 'Posted answers'
+				});
+				$scope.menus.push({
+					icon: 'glyphicon glyphicon-user',
+					color: 'btn btn-default',
+					title: 'Admin Panel',
+					url: '/#!/draws',
+					description: 'All registered users'
 				});
 				
 			}
