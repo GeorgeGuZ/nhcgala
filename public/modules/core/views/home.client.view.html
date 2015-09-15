@@ -2,32 +2,33 @@
 	<div class="row menu">
 
 
-		<div class="col-sm-6" ng-repeat="menu in menus">
-			<div class="row">
+		<div class="col-sm-6 container" ng-repeat="menu in menus" class="text-center">
+			<a class="row" ng-href="{{menu.url}}" >
 				<div class="col-xs-2">
 					<h1 class="pull-right">
-						<a type="button" ng-href="{{menu.url}}" class="btn" ng-class="menu.color">
+						<div type="button"class="btn" ng-class="menu.color">
 							<i class="glyphicon" ng-class="menu.icon"></i>
-						</a>
+						</div>
 					</h1>
 				</div>
 				<div class="col-xs-10">
 					<h1>{{menu.title}}</h1>
 				</div>
-			</div>
+			</a>
 			<div class="row">
 				<div class="col-xs-10 col-xs-offset-2">
 					<span class="text-muted">{{menu.description}}</span>
 				</div>
 			</div>
-		</div>
-		
-			
+		</div>			
 	</div>
-	<!-- <div class="jumbotron text-center">
-		<form id="checkout" method="post" action="/checkout">
-		  <div id="payment-form"></div>
-		  <input class="btn" type="submit" value="Pay Ticket">
-		</form>
-	</div> -->
+
 </section>
+<style>
+a.row{
+	color: black;
+}
+a.row:hover{
+	color: gray;
+}
+</style>

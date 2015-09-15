@@ -112,7 +112,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
 		$scope.update = function() {
 			var article = $scope.article;
-
 			article.updated = new Date(Date.now());
 			var score = 0;			
 			for (var i in article.correctAnswer) {
@@ -136,6 +135,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 			$scope.article = Articles.get({
 				articleId: $stateParams.articleId
 			});
+			$scope.ids = [[0,1,2,3,4,5],[6,7,8,9,10,11]];
+
 		};
 	}
 ]);

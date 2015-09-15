@@ -6,11 +6,6 @@ var app =angular.module('tickets');
 app.controller('TicketsController', ['$scope','$http', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $http, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
-		// $scope.tables=[];
-
-		// for (var i=1;i<=50;i++) {
-		// 	$scope.tables.push(i);
-		// }
 
 		// Create new Ticket
 		$scope.create = function() {

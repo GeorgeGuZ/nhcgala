@@ -1,33 +1,36 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-	<div class="page-header">
-		<!-- <h1 data-ng-bind="article.title"></h1> -->
-	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == article.user._id">
-		<a class="btn btn-default" href="/#!/articles/{{article._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-default" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="article.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="article.user.displayName"></span>
-		</em>
-	</small>
-	<p class="lead">{{article.answer}}</p>
+	<div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 ">
+		<div class="page-header">
+			Round {{article.round}}
+		</div>
 
+		<div class="pull-right" data-ng-show="authentication.user._id == article.user._id">
+			<a class="btn btn-default" href="/#!/articles/{{article._id}}/edit">
+				<i class="glyphicon glyphicon-edit"></i>
+			</a>
+			<a class="btn btn-default" data-ng-click="remove();">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</div>
+		<p>Your answer is: </p>
+		<p class="lead" ng-repeat="id in ids[article.round-1]">Q{{$index+1}}: {{ article.answer[id]}}</p>
 
-	<br />
+		<div ng-show="authentication.user.roles[0]=='admin'">
+			user's answer <p class="lead">{{article.answer}}</p>
+			correct <p class="lead">{{article.correctAnswer}}</p>
+			score <p class="lead">{{article.score}}</p>
+		</div>
+
+		<small>
+			<em class="text-muted pull-right">
+				Last changed by
+				<span data-ng-bind="article.updated | date:'mediumDate'"></span>
+				by
+				<span data-ng-bind="article.user.displayName"></span>
+			</em>
+		</small>
+	</div>
 	
-	<div ng-show="authentication.user.roles[0]=='admin'">
-		correct <p class="lead">{{article.correctAnswer}}</p>
-		score <p class="lead">{{article.score}}</p>
-	</div>
-	round <p class="lead">{{article.round}}</p>
 
 	
 

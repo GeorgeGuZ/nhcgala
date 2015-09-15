@@ -1,29 +1,61 @@
 
   <section data-ng-controller="TicketsController" ng-init="find()">
-    <div class="page-header">
-        <h1>Buy Ticket</h1>
-    </div>
-    <div class="col-md-12">
-
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4 form-bg">
+        <h3 class="text-center">Buy Ticket</h3>
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
+                <div class="form-group">
+                    <div data-ng-show="error" class="text-center text-danger">
+                        <div class="alert alert-danger" role="alert">
+                            <strong data-ng-bind="error"></strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            <i class="text-muted glyphicon glyphicon-user"></i>
+                        </span>
+                        <input type="text" data-ng-model="firstName" id="firstName" class="form-control" ng-init="firstName = authentication.user.firstName" required>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            <i class="text-muted glyphicon glyphicon-user"></i>
+                        </span>
+                        <input type="text" data-ng-model="lastName" id="lastName" class="form-control" ng-init="lastName = authentication.user.lastName" required>
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            <i class="text-muted glyphicon glyphicon-credit-card"></i>
+                        </span>
+                        <input type="text" ng-model="number" class="form-control" class="input-block-level"  payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" placeholder="card number ( no space )"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            <i class="text-muted glyphicon glyphicon-calendar"></i>
+                        </span>
+                        <input type="text" class="form-control" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="expiry ( MM/YY )"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            <i class="text-muted glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input type="text" class="form-control" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" placeholder="CVC ( *** )"/>
+                    </div>
+                </div>
+                
+
                 <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <div class="form-group">
-                            <label class="control-label" for="firstName">First Name</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="firstName" id="firstName" class="form-control" ng-init="firstName = authentication.user.firstName" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 text-center">
-                        <div class="form-group">
-                            <label class="control-label" for="lastName">Last Name</label>
-                            <div class="controls">
-                                <input type="text" data-ng-model="lastName" id="lastName" class="form-control" ng-init="lastName = authentication.user.lastName" required>
-                            </div>
-                        </div>
-                    </div>
+                
                      <div class="col-sm-6 text-center">
                         <div class="form-group">
                             <div class="controls">
@@ -40,15 +72,6 @@
                             </div>
                         </div>
                     </div>
-
-<!--                     <div class="col-sm-12 text-center container">
-                        <div class="form-group">
-                            <label for="table"> Select your table: </label><br>
-                            <select ng-model="table">
-                              <option ng-repeat="table in tables" value="{{table.id}}">{{table.id}}</option>
-                            </select>
-                        </div> 
-                    </div> -->
                     <div class="col-sm-12 text-center container">
                         <div class="form-group">
                             <label for="table"> Select your table: </label><br>
@@ -57,35 +80,10 @@
                             </select>
                         </div> 
                     </div>
-                    <div class="col-sm-12 text-center container">
-                        <div class="form-group">
-                        <label for="">Card number</label>
-                        <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
-                        </div>
-                    </div>
-                      
-                    <div class="col-sm-12 text-center container">
-                        <div class="form-group">
-                        <label for="">Expiry</label>
-                        <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
-                        </div>
-                    </div>
-                      
-                      
-                    <div class="col-sm-12 text-center container">
-                        <div class="form-group">
-                        <label for="">CVC</label>
-                        <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type"/>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-6 pull-right form-group">
-                    <button type="submit" class="btn btn-lg btn-default">Submit</button>
-                </div>
-                <div data-ng-show="error" class="text-danger">
-                  <strong data-ng-bind="error"></strong>
-                </div>
+                    <div class="text-center form-group">
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">Pay for the ticket</button>
+                    </div>
             </fieldset>
         </form>
 

@@ -116,18 +116,10 @@ exports.list = function(req, res) {
 						message: errorHandler.getErrorMessage(err)
 					});
 				}else {
-					// if (req.body.list === true) {
-						// res.jsonp(tickets);
-					// }
-					// else {
-					// 	res.jsonp(tables);
-					// }
-					// res.jsonp({'listticket': tickets, 'listtable': tables});
 					res.jsonp([tickets,tables]);
 				}
 
 			});
-			// res.jsonp(tickets);
 		}
 	});
 };

@@ -20,7 +20,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				color: 'btn btn-info',
 				title: 'Buy Ticket',
 				url: '/#!/tickets/create',
-				description: 'Get a ticket for free'
+				description: 'Get a ticket for this awesome night'
 			},
 			{
 				icon: 'glyphicon glyphicon-barcode',
@@ -37,14 +37,14 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 					color: 'btn btn-primary',
 					title: 'Lucky Draw',
 					url: '/#!/draws',
-					description: 'Who is the luckiest tonight?'
+					description: 'Ready to get your new iPhone 6s?'
 				});
 				$scope.menus.push({
 					icon: 'glyphicon glyphicon-pencil',
 					color: 'btn btn-warning',
 					title: 'Q & A result',
 					url: '/#!/articles',
-					description: 'Manage answers'
+					description: 'Posted answers'
 				});
 				
 			}
@@ -52,7 +52,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				$scope.menus.push({
 					icon: 'glyphicon glyphicon-pencil',
 					color: 'btn btn-warning',
-					title: 'Q & A',
+					title: 'Game',
 					url: '/#!/articles/create',
 					description: 'Post an answer, get the reward'
 				});
@@ -86,7 +86,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 				color: 'btn btn-info',
 				title: 'Buy Ticket',
 				url: '/#!/signin',
-				description: 'Get a ticket for free'
+				description: 'Get a ticket for this awesome night'
 			},
 			
 		];
