@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/nhcgala-dev',
+	db: 'mongodb://nhcdev:nhcdev@localhost/nhcgala-dev',
 	app: {
 		title: 'NHCGala - Development Environment'
 	},

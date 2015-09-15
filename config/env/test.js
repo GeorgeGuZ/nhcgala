@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/nhcgala-test',
+	db: 'mongodb://nhcdev:nhcdev@localhost/nhcgala-test',
 	port: 3001,
 	app: {
 		title: 'NHCGala - Test Environment'
