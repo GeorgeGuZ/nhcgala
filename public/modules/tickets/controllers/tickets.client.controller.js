@@ -6,11 +6,6 @@ var app =angular.module('tickets');
 app.controller('TicketsController', ['$scope','$http', '$stateParams', '$location', 'Authentication', 'Tickets',
 	function($scope, $http, $stateParams, $location, Authentication, Tickets) {
 		$scope.authentication = Authentication;
-		$scope.tables=[];
-
-		for (var i=1;i<=50;i++) {
-			$scope.tables.push(i);
-		}
 
 		// Create new Ticket
 		$scope.create = function() {
@@ -19,11 +14,19 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			var ticket = new Tickets ({
 				firstName: this.firstName,
 				lastName: this.lastName,
-				table: this.table,
+				tableId: this.table,
 				token: this.token,
 				barcode: Math.floor(Math.random() * (1000000000000 - 100000000000)) + 100000000000
 
 			});
+				for (var ref in refer) {
+						if (refer[ref] === this.refercode){
+						ticket.referred = true;	
+						ticket.price = 75;
+					}
+				}
+			
+
 			var expiryDate = this.expiry.split('/');
 			var card = {
 				"number": this.number,
@@ -39,19 +42,19 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 			 },
 			 data: card
 			}
+
 			$http(req).then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
 			    $scope.error = 'ticket purchased!';
-				// Redirect after save
+							// Redirect after save
 				ticket.$save(function(response) {
 					$location.path('tickets/' + response._id);
 
 					// Clear form fields
-					$scope.firstName = '',
-					$scope.lastName = '',
-					$scope.refercode = '',
-					$scope.barcode = '';
+					$scope.firstName = '';
+					$scope.lastName = '';
+					$scope.refercode = '';
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
@@ -92,7 +95,10 @@ app.controller('TicketsController', ['$scope','$http', '$stateParams', '$locatio
 
 		// Find a list of Tickets
 		$scope.find = function() {
-			$scope.tickets = Tickets.query();
+			$scope.queryResult = Tickets.query(function(){
+				$scope.tickets = $scope.queryResult[0];
+				$scope.tables = $scope.queryResult[1];
+			});
 		};
 
 		// Find existing Ticket

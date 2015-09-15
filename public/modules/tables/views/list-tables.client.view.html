@@ -1,0 +1,19 @@
+<section data-ng-controller="TablesController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Tables</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="table in tables" data-ng-href="#!/tables/{{table._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="table.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="table.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="table.id"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!tables.$resolved || tables.length">
+    	No Tables yet, why don't you <a href="/#!/tables/create">create one</a>?
+    </div>
+</section>

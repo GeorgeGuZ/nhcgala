@@ -42,8 +42,9 @@ var TicketSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	table: {
-		type: Number
+	tableId: {
+		type: Number,
+		default:0
 	},
 	user: {
 		type: Schema.ObjectId,
@@ -51,25 +52,5 @@ var TicketSchema = new Schema({
 	}
 });
 
-// var TableSchema = new Schema({
-
-// 	tableID: {
-// 		type: Number,
-// 		min: 1,
-// 		max: 50
-// 	},
-// 	tickets: {
-//     type: [{
-//       type: Schema.Types.ObjectId,
-//       ref: 'Ticket'
-//     }],
-//     validate: [arrayLimit, '{PATH} exceeds the limit of 10']
-//   }
-// });
-
-// function arrayLimit(val) {
-//   return val.length <= 10;
-// }
 
 mongoose.model('Ticket', TicketSchema);
-// mongoose.model('Table', TableSchema);
